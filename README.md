@@ -1,0 +1,1 @@
+Esta es una api que tiene informacion sobre la cultura mapuche y su vocabulario mapudungun
