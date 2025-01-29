@@ -63,7 +63,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     path="/get_data_mapu",
     name="Obtener Informacion Mapuche",
     description="Returns the data from the MapuFiles JSON file.",
-    tags=["Mapu Data"]     
+    tags=["Mapu Data ALL"]     
 )
 def get_data_mapu():
     try:
@@ -87,6 +87,33 @@ def get_data_mapu():
         print("Error: ",e)
 
 
+
+@app.get(
+    path="/get_data_mapu_selected",
+    name="Obtener Informacion Mapuche",
+    description="Returns the data from the Selected MapuFiles JSON file.",
+    tags=["Mapu Data Selected"] 
+)
+def get_data_mapu_selected():
+    try:
+        # Ruta al archivo JSON
+        json_path = Path("brain_mapu/json_data/mapuche_data_selected.json")
+
+        # Verifica si el archivo existe
+        if not json_path.exists():
+            return {"error": "El archivo JSON no existe."}
+
+        # Lee el archivo JSON
+        with json_path.open("r", encoding="utf-8") as json_file:
+            data = json.load(json_file)
+
+        # Crear el payload para enviar a la API
+        payload_dict = data
+        
+        return payload_dict
+
+    except Exception as e:
+        print(e)
 
 
 if __name__ == "__main__":

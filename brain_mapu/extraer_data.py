@@ -71,14 +71,88 @@ for pdf_file in pdf_files:
     all_data.append(data)
 
 
-#print(all_data[0]['Diccionario_mapudungun'])
 
+# Extraer el texto entre "alfabeto y numeros" y "glosario"
+def extract_text_between_keywords(text, start_keyword, end_keyword):
+    pattern = re.compile(rf'{start_keyword}(.*?){end_keyword}', re.DOTALL)
+    match = pattern.search(text)
+    if match:
+        return match.group(1).strip()
+    return ""
+
+
+def seleccionar_texto():
+    # ---------------- Diccionario_mapudungun --------
+    alfabeto = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], "u alfabeto", "glosario etimologico originario  palabra chilena")
+
+    glosario_etimologico_originario = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="significado original significado actual", end_keyword="kultrun instrumento musical")
+
+    conceptos_basicos = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="agradecer pedir y hasta sanar enfermedades   conceptos basicos", end_keyword="el cuerpo humano  u la cabeza")
+
+    cuerpo_humano = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'],start_keyword="el cuerpo humano  u", end_keyword="willodmawe nimin que se enrolla sobre")
+
+    familia_relaciones_comunidad = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="familia relaciones y comunidad  u familia y relaciones abuela", end_keyword="saludos y primeros contactos")
+
+    saludos_primeros_contactos = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="u saludo despedida preguntas y respuestas", end_keyword="hombre y mujer representados en tejido textil makun")
+
+    ambito_hogar = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="el ambito  del hogar  u", end_keyword="aliwen arbol que esta plantado")
+
+    verbos_acciones_adjetivos_emociones = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="adjetivos y emociones  u", end_keyword="persona buena kumeche persona")
+
+    ceremonias_fiestas_musica_juegos = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="ceremonias fiestas  musica juegos  u", end_keyword="anumka representacion de una planta")
+
+    naturaleza = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="con fines medicos y decorativos", end_keyword="wangulen espiritu femenino presente en la mitologia mapuche")
+
+
+    comunicacion_basica = extract_text_between_keywords(all_data[0]['Diccionario_mapudungun'], start_keyword="listado de frases   de comunicacion basica", end_keyword="bibliografia armengol")
+
+
+    # ----------------  Diccionario-mapudungun-espanol-espanol-mapudungun --------
+
+
+    structured_data = [
+                    "Diccionario_mapudungun",
+                       {
+                        "alfabeto": alfabeto,
+                        "glosario_etimologico_originario":glosario_etimologico_originario,
+                        "conceptos_basicos": conceptos_basicos,
+                        "cuerpo_humano": cuerpo_humano,
+                        "familia_relaciones_comunidad": familia_relaciones_comunidad,
+                        "saludos_primeros_contactos": saludos_primeros_contactos,
+                        "ambito_hogar": ambito_hogar,
+                        "verbos_acciones_adjetivos_emociones": verbos_acciones_adjetivos_emociones,
+                        "ceremonias_fiestas_musica_juegos":ceremonias_fiestas_musica_juegos,
+                        "naturaleza": naturaleza,
+                        "comunicacion_basica": comunicacion_basica
+                        },
+                    "Diccionario-mapudungun-espanol-espanol-mapudungun",
+                        {
+                            "proximamente":"..."
+                        }
+                    ]
+                    
+    
+    nombre_archivo = "mapuche_data_selected.json"
+    ruta_final = f"D:/LLLIT/Code-W11/PY/api_data_mapu/brain_mapu/json_data/{nombre_archivo}"
+
+    # Guardar los datos en un archivo JSON
+    with open(ruta_final, "w", encoding="utf-8") as f:
+        json.dump(structured_data, f, ensure_ascii=False, indent=4)
+        print(f"Datos guardados correctamente en {ruta_final}")
+
+
+
+#print(all_data)
 
 
 if __name__ == "__main__":
 
     try:
-        ruta_final = "D:/LLLIT/Code-W11/PY/api_data_mapu/brain_mapu/json_data/mapuche_data.json"
+
+        seleccionar_texto()
+
+        nombre_archivo = "mapuche_data.json"
+        ruta_final = f"D:/LLLIT/Code-W11/PY/api_data_mapu/brain_mapu/json_data/{nombre_archivo}"
 
 
         # Guardar los datos en un archivo JSON
