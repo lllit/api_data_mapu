@@ -71,7 +71,7 @@ for pdf_file in pdf_files:
     all_data.append(data)
 
 
-
+# ------- UTILS ----------------------------------------
 # Extraer el texto entre "alfabeto y numeros" y "glosario"
 def extract_text_between_keywords(text, start_keyword, end_keyword):
     pattern = re.compile(rf'{start_keyword}(.*?){end_keyword}', re.DOTALL)
@@ -140,7 +140,7 @@ def seleccionar_texto():
         json.dump(structured_data, f, ensure_ascii=False, indent=4)
         print(f"Datos guardados correctamente en {ruta_final}")
 
-
+# -----------------------------------------------------
 
 #print(all_data)
 
