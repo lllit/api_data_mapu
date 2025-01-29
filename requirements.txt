@@ -3,3 +3,5 @@ uvicorn
 
 fastapi[standard]
 python-jose
+Unidecode
+PyMuPDF
