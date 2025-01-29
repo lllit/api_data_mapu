@@ -3,17 +3,12 @@ import os
 from typing import Any
 from datetime import timedelta
 from pathlib import Path
-
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from utils.security import create_access_token, get_current_user
-
 from contextlib import asynccontextmanager
-
 from dotenv import load_dotenv
-
 from pydantic import BaseModel
-
 from Models.model_token import Token
 
 
