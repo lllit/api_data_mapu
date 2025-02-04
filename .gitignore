@@ -7,3 +7,5 @@ __pycache__/
 __pycache__
 
 brain_mapu/data_pdf/*
+
+utils/test_ollama.py

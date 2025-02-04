@@ -5,3 +5,7 @@ fastapi[standard]
 python-jose
 Unidecode
 PyMuPDF
+
+groq
+requests
+ollama
